@@ -1,7 +1,7 @@
 import { takeLatest, put } from "redux-saga/effects";
 import axios from 'axios'
 // const API_URL = 'http://localhost:3001/donors'
-const API_URL = `https://donors-list.herokuapp.com:${process.env.PORT || 3001}/donors`
+const API_URL = `https://donors-json-server.herokuapp.com/donors`
 function* addDonorAsync(data) {
     //Call API Here
     const item = { ...data.value }
