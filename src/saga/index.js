@@ -5,8 +5,11 @@ const API_URL = `https://donors-json-server.herokuapp.com/donors`
 function* addDonorAsync(data) {
     //Call API Here
     const item = { ...data.value }
+    yield put({ type: "SET_LOADING", value: true });
     const addedItem = yield axios.post(API_URL, item);
     yield put({ type: "ADD_DONOR_ASYNC", value: addedItem.data });
+    yield put({ type: "SET_LOADING", value: false });
+
 }
 
 export function* watchAddDonor() {
@@ -16,8 +19,10 @@ export function* watchAddDonor() {
 function* updateDonorAsync(data) {
     //Call API Here
     const item = { ...data.value }
+    yield put({ type: "SET_LOADING", value: true });
     const addedItem = yield axios.put(`${API_URL}/${item.id}`, item);
     yield put({ type: "UPDATE_DONOR_ASYNC", value: addedItem.data });
+    yield put({ type: "SET_LOADING", value: false });
 }
 
 export function* watchUpdateDonor() {
